@@ -1,0 +1,14 @@
+{
+  "name": "cria-plus",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "eleventy",
+    "prebuild": "mv docs/CNAME . || true && rm -rf docs/* && mv ./CNAME docs/ || true",
+    "start": "eleventy --serve"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "markdown-it": "^12.0.2"
+  }
+}

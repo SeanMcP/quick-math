@@ -1,0 +1,24 @@
+---
+scripts: ['main.js']
+styles: []
+---
+
+<div class="content">
+    <h1><span aria-hidden="true" role='img'>{{ app.emoji }}</span>&nbsp;{{ app.title }}</h1>
+    <p>{{ app.description }}</p>
+    <form action="practice/"  id="create-form">
+        <h2>Numbers</h2>
+        {% for i in range(0, 10) -%}
+            <label style="display:block;">
+                <input type="checkbox" name="n" value="{{ i }}" />
+                &nbsp;
+                <b>{{ i }}</b>
+            </label>
+        {%- endfor %}
+        <label id="key-label">Key</label>
+        <p id="key-description">Students see the key when they have finished the practice exercises, so that you can verify they completed them.</p>
+        <input aria-labelledby="key-label" aria-describedby="key-description" data-name="key-dummy" />
+        <input hidden name="key" />
+        <button>Create</button>
+    </form>
+</div>
