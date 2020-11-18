@@ -7,6 +7,15 @@ styles: []
     <h1><span aria-hidden="true" role='img'>{{ app.emoji }}</span>&nbsp;{{ app.title }}</h1>
     <p>{{ app.description }}</p>
     <form action="practice/"  id="create-form">
+        <h2>Operators</h2>
+        {% set ops = ['Addition', 'Subtraction']%}
+        {% for op in ops -%}
+            <label style="display:block;">
+                <input type="checkbox" name="o" value="{{ op | lower }}" />
+                &nbsp;
+                <b>{{ op }}</b>
+            </label>
+        {%- endfor %}
         <h2>Numbers</h2>
         {% for i in range(0, 10) -%}
             <label style="display:block;">

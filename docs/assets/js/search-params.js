@@ -4,9 +4,11 @@ import { decode } from "./code.js";
 export function get() {
     const usp = new URLSearchParams(location.search)
     const numbers = usp.getAll('n').map(Number)
+    const operations = usp.getAll('o')
     
     return {
         key: decode(usp.get('key')),
+        operations,
         numbers
     }
 }
