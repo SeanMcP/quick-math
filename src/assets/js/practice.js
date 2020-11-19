@@ -19,13 +19,15 @@ import { get } from "./search-params.js";
     const problemForm = document.createElement("form");
     const number1 = randomItem(params.numbers);
     const number2 = randomItem(params.numbers);
-    const operation = randomItem(params.operations);
-    const problemString = `${number1} ${symbolMap[operation]} ${number2}`;
+    const operation = symbolMap[randomItem(params.operations)];
+    // NOTE: See note in operations.js
     // TODO: Look into safer alternatives to eval()
     problemForm.innerHTML = `
     <label>
-    <span>${problemString} = </span>
-    <input name="input" type="number" data-answer="${eval(problemString)}" />
+    <span>${number1} ${operation.display} ${number2} = </span>
+    <input name="input" step="any" type="number" data-answer="${eval(
+      `${number1} ${operation.operator} ${number2}`
+    )}" />
     </label>
     <button>Enter</button>
     `;
