@@ -6,40 +6,45 @@ import { get } from "./search-params.js";
   const params = get();
   console.log({ params });
 
-  const problemForm = document.getElementById("problem-form");
+  function randomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  const formContainer = document.getElementById("form-container");
+  const generateProblemEvent = new CustomEvent("generate-problem", {
+    bubbles: true,
+  });
 
   function generateProblem() {
-    const number1 =
-      params.numbers[Math.floor(Math.random() * params.numbers.length)];
-    const number2 =
-      params.numbers[Math.floor(Math.random() * params.numbers.length)];
-    const operation =
-      params.operations[Math.floor(Math.random() * params.operations.length)];
+    const problemForm = document.createElement("form");
+    const number1 = randomItem(params.numbers);
+    const number2 = randomItem(params.numbers);
+    const operation = randomItem(params.operations);
     const problemString = `${number1} ${symbolMap[operation]} ${number2}`;
-    // TODO: Look into safer alternatives
-    const answer = eval(problemString);
+    // TODO: Look into safer alternatives to eval()
     problemForm.innerHTML = `
     <label>
     <span>${problemString} = </span>
-    <input name="input" type="number" />
+    <input name="input" type="number" data-answer="${eval(problemString)}" />
     </label>
     <button>Enter</button>
     `;
 
     problemForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      const input = Number(new FormData(problemForm).get("input"));
-      // TODO: It thinks correct answers are wrong for a moment before thinking
-      // they are correct. It could be a race condition. Maybe try clearing the
-      // innerHTML before generating a new problem?
-      if (input === answer) {
+      const inputEl = problemForm.querySelector('input[name="input"]');
+      if (inputEl.dataset.answer === inputEl.value) {
         alert("Success!");
-        generateProblem();
+        problemForm.dispatchEvent(generateProblemEvent);
       } else {
         alert("Try again!");
       }
     });
+
+    formContainer.textContent = "";
+    formContainer.appendChild(problemForm);
   }
 
-  generateProblem();
+  window.addEventListener("generate-problem", generateProblem);
+  window.dispatchEvent(generateProblemEvent);
 })();
