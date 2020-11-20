@@ -1,0 +1,65 @@
+/* Scratchpad styles */
+
+.scratchpad-details {
+  margin-top: 1rem;
+}
+
+.scratchpad-details summary {
+  font-weight: bold;
+  padding: 0.25rem;
+}
+
+.scratchpad-details:not([open]) summary {
+  border-bottom: var(--border-width) solid var(--gray200);
+}
+
+.scratchpad-container {
+  --border: var(--border-width) solid var(--gray200);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  min-height: 200px;
+  position: relative;
+}
+
+.scratchpad-toolbar {
+  border-bottom: var(--border);
+  padding: 0.25rem;
+}
+
+#scratchpad {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 6rem);
+  margin: 0.5rem;
+}
+
+#scratchpad > * {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.scratchpad__button[data-state="highlighted"] {
+  background-color: yellow !important;
+}
+
+.scratchpad__button[data-state="transparent"] {
+  opacity: 0.334;
+}
+
+/* Deleting state */
+
+body[data-deleting] .scratchpad-container {
+  background-color: hsla(0, 100%, 50%, 4%);
+  border-color: red;
+}
+
+body[data-deleting] #delete-button {
+  background-color: var(--faint);
+}
+
+body[data-deleting] [data-deletable] {
+  cursor: not-allowed;
+}

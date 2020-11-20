@@ -14,6 +14,8 @@
     />
     <link rel="stylesheet" href="/assets/css/tl.css" />
     <link rel="stylesheet" href="/assets/css/styles.css" />
+    
+    <link rel="stylesheet" href="/assets/css/scratchpad.css" />
     </head>
   <body>
     
@@ -22,12 +24,29 @@
 
 <div class="content">
     <h1>Practice</h1>
-    <p>Let's strengthen those math muscles! <span aria-hidden="true" role="img">💪</span></p>
-    <div id="form-container">
-    </div>
+    <p>Let's strengthen those math muscles!
+        <span aria-hidden="true" role="img">💪</span></p>
+    <div id="form-container"></div>
+    <details class="scratchpad-details">
+        <summary>Scratchpad</summary>
+        <div class="scratchpad-container">
+            <div class="scratchpad-toolbar">
+                <button class="subtle" id="add-button">Add</button>
+                <button class="subtle" id="delete-button">Delete</button>
+                <button class="operation-button subtle">+</button>
+                <button class="operation-button subtle">–</button>
+                <button class="operation-button subtle">⨉</button>
+                <button class="operation-button subtle">÷</button>
+                <button class="operation-button subtle">=</button>
+                </div>
+            <div id="scratchpad"></div>
+        </div>
+    </details>
 </div>
 </main>
   </body>
   
   <script src="/assets/js/practice.js" type="module"></script>
+  
+  <script src="/assets/js/scratchpad.js" type="module"></script>
   </html>

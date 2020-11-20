@@ -2,14 +2,28 @@
 layout: main.njk
 title: Practice
 desciption:
-scripts: ['practice.js']
-styles: []
+scripts: ['practice.js', 'scratchpad.js']
+styles: ['scratchpad.css']
 ---
 
 {# Content #}
 <div class="content">
     <h1>{{ title }}</h1>
-    <p>Let's strengthen those math muscles! <span aria-hidden="true" role="img">💪</span></p>
-    <div id="form-container">
-    </div>
+    <p>Let's strengthen those math muscles!
+        <span aria-hidden="true" role="img">💪</span></p>
+    <div id="form-container"></div>
+    <details class="scratchpad-details">
+        <summary>Scratchpad</summary>
+        <div class="scratchpad-container">
+            <div class="scratchpad-toolbar">
+                <button class="subtle" id="add-button">Add</button>
+                <button class="subtle" id="delete-button">Delete</button>
+                {% set ops = ['+', '–', '⨉', '÷', '='] -%}
+                {% for op in ops -%}
+                    <button class="operation-button subtle">{{ op }}</button>
+                {% endfor -%}
+            </div>
+            <div id="scratchpad"></div>
+        </div>
+    </details>
 </div>
