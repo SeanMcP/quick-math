@@ -8,10 +8,10 @@ styles: []
     <p>{{ app.description }}</p>
     <form action="practice/"  id="create-form">
         <h2>Operators</h2>
-        {% set ops = ['Addition', 'Subtraction']%}
+        {% set ops = ['Addition', 'Subtraction', 'Multiplication', 'Division']%}
         {% for op in ops -%}
             <label style="display:block;">
-                <input type="checkbox" name="o" value="{{ op | lower }}" />
+                <input type="checkbox" name="o" value="{{ op | first | lower }}" />
                 &nbsp;
                 <b>{{ op }}</b>
             </label>
