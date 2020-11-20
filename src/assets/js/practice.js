@@ -17,8 +17,12 @@ import { get } from "./search-params.js";
 
   function generateProblem() {
     const problemForm = document.createElement("form");
-    const number1 = randomItem(params.numbers);
-    const number2 = randomItem(params.numbers);
+    // Ensure the larger number is first
+    const [number1, number2] = [
+      randomItem(params.numbers),
+      randomItem(params.numbers),
+    ].sort((a, b) => b - a);
+
     const operation = symbolMap[randomItem(params.operations)];
     // NOTE: See note in operations.js
     // TODO: Look into safer alternatives to eval()
