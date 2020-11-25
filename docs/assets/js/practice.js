@@ -1,13 +1,20 @@
 import { symbolMap } from "./operations.js";
 import { get } from "./search-params.js";
-import { KEY, incrementCorrectCount, set } from "./storage.js";
+import {
+  KEY,
+  incrementCorrectCount,
+  initializeCorrectCount,
+  set,
+} from "./storage.js";
 
 (function main() {
   // Code
   const params = get();
   console.log({ params });
-  set(KEY.total, params.count);
-  set(KEY.pass, params.key);
+  initializeCorrectCount();
+  set(KEY.fail, params.failKey);
+  set(KEY.pass, params.passKey);
+  set(KEY.satisfactory, params.satisfactory);
 
   function randomItem(array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -68,19 +75,19 @@ import { KEY, incrementCorrectCount, set } from "./storage.js";
   }
 
   const progressElement = document.getElementById("progress-indicator");
-  progressElement.max = params.count;
+  progressElement.max = params.total;
 
   window.addEventListener("increment-progress", () => {
     const nextValue = Number(progressElement.value) + 1;
     progressElement.value = nextValue;
-    progressElement.textContent = (nextValue / params.count) * 100 + "%";
-    if (nextValue >= params.count) {
+    progressElement.textContent = (nextValue / params.total) * 100 + "%";
+    if (nextValue >= params.total) {
       window.dispatchEvent(endPracticeEvent);
     }
   });
 
   window.addEventListener("end-practice", () => {
-    alert(`Share this key with your teacher: ${params.key}`);
+    location.href = location.origin + '/done/'
   });
 
   window.addEventListener("generate-problem", generateProblem);
