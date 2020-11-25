@@ -11,7 +11,12 @@ import { get } from "./search-params.js";
   }
 
   const formContainer = document.getElementById("form-container");
+
+  const endPracticeEvent = new CustomEvent('end-practice', { bubbles: true })
   const generateProblemEvent = new CustomEvent("generate-problem", {
+    bubbles: true,
+  });
+  const incrementProgressEvent = new CustomEvent("increment-progress", {
     bubbles: true,
   });
 
@@ -41,6 +46,7 @@ import { get } from "./search-params.js";
       const inputEl = problemForm.querySelector('input[name="input"]');
       if (inputEl.dataset.answer === inputEl.value) {
         alert("Success!");
+        window.dispatchEvent(incrementProgressEvent);
         problemForm.dispatchEvent(generateProblemEvent);
       } else {
         alert("Try again!");
@@ -50,6 +56,22 @@ import { get } from "./search-params.js";
     formContainer.textContent = "";
     formContainer.appendChild(problemForm);
   }
+
+  const progressElement = document.getElementById("progress-indicator");
+  progressElement.max = params.count;
+
+  window.addEventListener("increment-progress", () => {
+    const nextValue = Number(progressElement.value) + 1;
+    progressElement.value = nextValue;
+    progressElement.textContent = (nextValue / params.count) * 100 + "%";
+    if (nextValue >= params.count) {
+      window.dispatchEvent(endPracticeEvent)
+    }
+  });
+
+  window.addEventListener('end-practice', () => {
+    alert(`Share this key with your teacher: ${params.key}`)
+  })
 
   window.addEventListener("generate-problem", generateProblem);
   window.dispatchEvent(generateProblemEvent);
