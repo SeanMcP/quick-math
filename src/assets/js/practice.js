@@ -1,10 +1,13 @@
 import { symbolMap } from "./operations.js";
 import { get } from "./search-params.js";
+import { KEY, incrementCorrectCount, set } from "./storage.js";
 
 (function main() {
   // Code
   const params = get();
   console.log({ params });
+  set(KEY.total, params.count);
+  set(KEY.pass, params.key);
 
   function randomItem(array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -12,7 +15,7 @@ import { get } from "./search-params.js";
 
   const formContainer = document.getElementById("form-container");
 
-  const endPracticeEvent = new CustomEvent('end-practice', { bubbles: true })
+  const endPracticeEvent = new CustomEvent("end-practice", { bubbles: true });
   const generateProblemEvent = new CustomEvent("generate-problem", {
     bubbles: true,
   });
@@ -46,10 +49,17 @@ import { get } from "./search-params.js";
       const inputEl = problemForm.querySelector('input[name="input"]');
       if (inputEl.dataset.answer === inputEl.value) {
         alert("Success!");
+        incrementCorrectCount();
         window.dispatchEvent(incrementProgressEvent);
         problemForm.dispatchEvent(generateProblemEvent);
       } else {
-        alert("Try again!");
+        if (params.allowIncorrect) {
+          alert(`So close! The correct answer was ${inputEl.dataset.answer}`);
+          window.dispatchEvent(incrementProgressEvent);
+          problemForm.dispatchEvent(generateProblemEvent);
+        } else {
+          alert("Try again!");
+        }
       }
     });
 
@@ -65,13 +75,13 @@ import { get } from "./search-params.js";
     progressElement.value = nextValue;
     progressElement.textContent = (nextValue / params.count) * 100 + "%";
     if (nextValue >= params.count) {
-      window.dispatchEvent(endPracticeEvent)
+      window.dispatchEvent(endPracticeEvent);
     }
   });
 
-  window.addEventListener('end-practice', () => {
-    alert(`Share this key with your teacher: ${params.key}`)
-  })
+  window.addEventListener("end-practice", () => {
+    alert(`Share this key with your teacher: ${params.key}`);
+  });
 
   window.addEventListener("generate-problem", generateProblem);
   window.dispatchEvent(generateProblemEvent);
