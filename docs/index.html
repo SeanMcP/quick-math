@@ -20,74 +20,80 @@
 <main id="main" role="main">
     
 <div class="content">
-    <h1><span aria-hidden="true" role='img'>🐞</span>&nbsp;Quick Math</h1>
+    <h1>
+        <span aria-hidden="true" role='img'>🐞</span>&nbsp;Quick Math</h1>
     <p>Math practice with helpful illustrations</p>
-    <form action="practice/"  id="create-form">
+    <form action="practice/" id="create-form">
         <h2>Operators</h2>
         
         <label style="display:block;">
-                <input type="checkbox" name="o" value="a" />
+                <input type="checkbox" name="o" value="a"/>
                 &nbsp;
                 <b>Addition</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="o" value="s" />
+                <input type="checkbox" name="o" value="s"/>
                 &nbsp;
                 <b>Subtraction</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="o" value="m" />
+                <input type="checkbox" name="o" value="m"/>
                 &nbsp;
                 <b>Multiplication</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="o" value="d" />
+                <input type="checkbox" name="o" value="d"/>
                 &nbsp;
                 <b>Division</b>
             </label>
         <h2>Numbers</h2>
         <label style="display:block;">
-                <input type="checkbox" name="n" value="0" />
+                <input type="checkbox" name="n" value="0"/>
                 &nbsp;
                 <b>0</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="n" value="1" />
+                <input type="checkbox" name="n" value="1"/>
                 &nbsp;
                 <b>1</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="n" value="2" />
+                <input type="checkbox" name="n" value="2"/>
                 &nbsp;
                 <b>2</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="n" value="3" />
+                <input type="checkbox" name="n" value="3"/>
                 &nbsp;
                 <b>3</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="n" value="4" />
+                <input type="checkbox" name="n" value="4"/>
                 &nbsp;
                 <b>4</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="n" value="5" />
+                <input type="checkbox" name="n" value="5"/>
                 &nbsp;
                 <b>5</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="n" value="6" />
+                <input type="checkbox" name="n" value="6"/>
                 &nbsp;
                 <b>6</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="n" value="7" />
+                <input type="checkbox" name="n" value="7"/>
                 &nbsp;
                 <b>7</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="n" value="8" />
+                <input type="checkbox" name="n" value="8"/>
                 &nbsp;
                 <b>8</b>
             </label><label style="display:block;">
-                <input type="checkbox" name="n" value="9" />
+                <input type="checkbox" name="n" value="9"/>
                 &nbsp;
                 <b>9</b>
             </label>
-        <label id="key-label">Key</label>
+        <h2>Settings</h2>
+        <label class="block">
+            <b>Number of problems</b><input type="number" name="c"/></label>
+        <label class="block">
+            <b>Allow incorrect answers</b><input type="checkbox" name="i"/></label>
+        <label class="block" id="key-label">Key</label>
         <p id="key-description">Students see the key when they have finished the practice exercises, so that you can verify they completed them.</p>
-        <input aria-labelledby="key-label" aria-describedby="key-description" data-name="key-dummy" />
-        <input hidden name="key" />
+        <input aria-labelledby="key-label" aria-describedby="key-description" data-name="key-dummy"/>
+        <input hidden="hidden" name="key"/>
         <button>Create</button>
     </form>
 </div>

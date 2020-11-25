@@ -4,14 +4,15 @@ styles: []
 ---
 
 <div class="content">
-    <h1><span aria-hidden="true" role='img'>{{ app.emoji }}</span>&nbsp;{{ app.title }}</h1>
+    <h1>
+        <span aria-hidden="true" role='img'>{{ app.emoji }}</span>&nbsp;{{ app.title }}</h1>
     <p>{{ app.description }}</p>
-    <form action="practice/"  id="create-form">
+    <form action="practice/" id="create-form">
         <h2>Operators</h2>
         {% set ops = ['Addition', 'Subtraction', 'Multiplication', 'Division']%}
         {% for op in ops -%}
             <label style="display:block;">
-                <input type="checkbox" name="o" value="{{ op | first | lower }}" />
+                <input type="checkbox" name="o" value="{{ op | first | lower }}"/>
                 &nbsp;
                 <b>{{ op }}</b>
             </label>
@@ -19,15 +20,20 @@ styles: []
         <h2>Numbers</h2>
         {% for i in range(0, 10) -%}
             <label style="display:block;">
-                <input type="checkbox" name="n" value="{{ i }}" />
+                <input type="checkbox" name="n" value="{{ i }}"/>
                 &nbsp;
                 <b>{{ i }}</b>
             </label>
         {%- endfor %}
-        <label id="key-label">Key</label>
+        <h2>Settings</h2>
+        <label class="block">
+            <b>Number of problems</b><input type="number" name="c"/></label>
+        <label class="block">
+            <b>Allow incorrect answers</b><input type="checkbox" name="i"/></label>
+        <label class="block" id="key-label">Key</label>
         <p id="key-description">Students see the key when they have finished the practice exercises, so that you can verify they completed them.</p>
-        <input aria-labelledby="key-label" aria-describedby="key-description" data-name="key-dummy" />
-        <input hidden name="key" />
+        <input aria-labelledby="key-label" aria-describedby="key-description" data-name="key-dummy"/>
+        <input hidden="hidden" name="key"/>
         <button>Create</button>
     </form>
 </div>
