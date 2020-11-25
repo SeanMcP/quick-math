@@ -8,7 +8,8 @@ styles: []
         <span aria-hidden="true" role='img'>{{ app.emoji }}</span>&nbsp;{{ app.title }}</h1>
     <p>{{ app.description }}</p>
     <form action="practice/" id="create-form">
-        <h2>Operators</h2>
+        <h2>Setup</h2>
+        <h3>Operators</h3>
         {% set ops = ['Addition', 'Subtraction', 'Multiplication', 'Division']%}
         {% for op in ops -%}
             <label style="display:block;">
@@ -17,7 +18,7 @@ styles: []
                 <b>{{ op }}</b>
             </label>
         {%- endfor %}
-        <h2>Numbers</h2>
+        <h3>Numbers</h3>
         {% for i in range(0, 10) -%}
             <label style="display:block;">
                 <input type="checkbox" name="n" value="{{ i }}"/>
@@ -25,7 +26,7 @@ styles: []
                 <b>{{ i }}</b>
             </label>
         {%- endfor %}
-        <h2>Settings</h2>
+        <h3>Settings</h3>
         <label class="field">
             <b>Total number of problems</b><input type="number" name="t"/></label>
         <label class="field">
@@ -33,8 +34,10 @@ styles: []
             <input type="number" name="s"/>
         </label>
         <label class="block">
-            <b>Allow incorrect answers</b><input type="checkbox" name="i"/></label>
-        <h2>Keys</h2>
+            <input type="checkbox" name="i"/>
+            <b>Allow incorrect answers</b>
+        </label>
+        <h3>Keys</h3>
         <p id="key-description">Keys are secret words that students see when they have completed the exercises. You can use the keys to a) verify that your students have completed the activity, and b) determine whether they have mastered the skill or not.<br/><br/>It's a good idea to use short words of the same length that aren't related to the activity, like "cat" and "dog".
         </p>
         <label class="field">
