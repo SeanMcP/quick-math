@@ -1,8 +1,8 @@
 export const KEY = {
   count: "correct_count",
-  total: "total_count",
-  pass: "pass_key",
   fail: "fail_key",
+  pass: "pass_key",
+  satisfactory: "satisfactory",
 };
 
 export function get(item) {
@@ -19,4 +19,8 @@ export function getCorrectCount() {
 
 export function incrementCorrectCount() {
   set(KEY.count, (Number(get(KEY.count)) || 0) + 1);
+}
+
+export function initializeCorrectCount() {
+  set(KEY.count, 0);
 }
