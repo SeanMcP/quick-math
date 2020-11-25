@@ -9,7 +9,7 @@
     button.classList.add("scratchpad__button", "subtle");
     button.textContent = "🐞";
     button.dataset.state = "default";
-    button.dataset.deletable = true
+    button.dataset.deletable = true;
 
     button.addEventListener("click", (event) => {
       event.preventDefault();
@@ -51,14 +51,19 @@
     }
   });
 
-  document.querySelectorAll('.operation-button').forEach(button => {
-      button.addEventListener('click', event => {
-          event.preventDefault();
-          const b = document.createElement('button')
-          b.classList.add('subtle')
-          b.dataset.deletable = true
-          b.textContent = button.textContent
-          scratchpadEl.appendChild(b)
-      })
-  })
+  document.querySelectorAll(".operation-button").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      const b = document.createElement("button");
+      b.classList.add("subtle");
+      b.dataset.deletable = true;
+      b.textContent = button.textContent;
+      scratchpadEl.appendChild(b);
+    });
+  });
+
+  document.getElementById("clear-button").addEventListener("click", (event) => {
+    event.preventDefault();
+    scratchpadEl.textContent = "";
+  });
 })();
