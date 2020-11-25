@@ -1,6 +1,6 @@
 import { decode } from "./code.js";
 
-// ?c=10&i=true&o=a&n=2&n3&key=116-101-115-116
+// ?t=10s=7&i=on&o=a&n=2&n3&p=116-101-115-116&f=116-101-115-116
 export function get() {
   const usp = new URLSearchParams(location.search);
   const numbers = usp.getAll("n").map(Number);
@@ -8,9 +8,11 @@ export function get() {
 
   return {
     allowIncorrect: usp.get("i") === "on",
-    count: Number(usp.get("c")),
-    key: decode(usp.get("key")),
+    failKey: decode(usp.get("f")),
     numbers,
     operations,
+    passKey: decode(usp.get("p")),
+    satisfactory: Number(usp.get("s")),
+    total: Number(usp.get("t")),
   };
 }

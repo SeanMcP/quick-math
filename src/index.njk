@@ -26,14 +26,27 @@ styles: []
             </label>
         {%- endfor %}
         <h2>Settings</h2>
-        <label class="block">
-            <b>Number of problems</b><input type="number" name="c"/></label>
+        <label class="field">
+            <b>Total number of problems</b><input type="number" name="t"/></label>
+        <label class="field">
+            <b>Satisfactory number</b>
+            <input type="number" name="s"/>
+        </label>
         <label class="block">
             <b>Allow incorrect answers</b><input type="checkbox" name="i"/></label>
-        <label class="block" id="key-label">Key</label>
-        <p id="key-description">Students see the key when they have finished the practice exercises, so that you can verify they completed them.</p>
-        <input aria-labelledby="key-label" aria-describedby="key-description" data-name="key-dummy"/>
-        <input hidden="hidden" name="key"/>
+        <h2>Keys</h2>
+        <p id="key-description">Keys are secret words that students see when they have completed the exercises. You can use the keys to a) verify that your students have completed the activity, and b) determine whether they have mastered the skill or not.<br/><br/>It's a good idea to use short words of the same length that aren't related to the activity, like "cat" and "dog".
+        </p>
+        <label class="field">
+            <b>"Satisfactory" key</b>
+            <input aria-describedby="key-description" data-name="p-key-dummy"/>
+        </label>
+        <input hidden="hidden" name="p"/>
+        <label class="field">
+            <b>"Needs improvement" key</b>
+            <input aria-describedby="key-description" data-name="f-key-dummy"/>
+        </label>
+        <input hidden="hidden" name="f"/>
         <button>Create</button>
     </form>
 </div>
