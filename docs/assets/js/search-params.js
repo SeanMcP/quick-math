@@ -1,6 +1,6 @@
 import { decode } from "./code.js";
 
-// ?t=10s=7&i=on&o=a&n=2&n3&p=116-101-115-116&f=116-101-115-116
+// ?o=a&n=1&n=2&t=5&s=3&i=on&p=99-97-116&f=100-111-103
 export function get() {
   const usp = new URLSearchParams(location.search);
   const numbers = usp.getAll("n").map(Number);
