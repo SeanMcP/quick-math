@@ -87,9 +87,12 @@ import {
   });
 
   window.addEventListener("end-practice", () => {
-    location.href = location.origin + '/done/'
+    location.href = location.origin + "/done/";
   });
 
   window.addEventListener("generate-problem", generateProblem);
   window.dispatchEvent(generateProblemEvent);
+
+  document.getElementById("edit-link").href =
+    `/` + location.search + "&edit=true";
 })();

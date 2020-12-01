@@ -8,6 +8,7 @@ export function get() {
 
   return {
     allowIncorrect: usp.get("i") === "on",
+    edit: usp.get("edit") === "true",
     failKey: decode(usp.get("f")),
     numbers,
     operations,
