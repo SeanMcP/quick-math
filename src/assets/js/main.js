@@ -7,7 +7,7 @@ import { get } from "./search-params.js";
 
   createForm.addEventListener("submit", () => {
     const dummyPassKeyInput = document.querySelector(
-      'input[data-name="p-key-dummy"]'
+      'input[data-fake-name="p-key-dummy"]'
     );
     if (dummyPassKeyInput.value) {
       document.querySelector('input[name="p"]').value = encode(
@@ -15,7 +15,7 @@ import { get } from "./search-params.js";
       );
     }
     const dummyFailKeyInput = document.querySelector(
-      'input[data-name="f-key-dummy"]'
+      'input[data-fake-name="f-key-dummy"]'
     );
     if (dummyFailKeyInput.value) {
       document.querySelector('input[name="f"]').value = encode(
@@ -23,6 +23,31 @@ import { get } from "./search-params.js";
       );
     }
   });
+
+  const gradedSettingsEl = document.getElementById("graded-settings");
+  const gradedSettingsFields = gradedSettingsEl.querySelectorAll("[name]");
+  
+  // Hide graded settings by default
+  gradedSettingsFields.forEach((node) => {
+    node.dataset.name = node.name;
+    node.removeAttribute("name");
+  });
+  document
+    .querySelector("input[name=e][value=p]")
+    .addEventListener("change", () => {
+      gradedSettingsEl.hidden = true;
+      gradedSettingsFields.forEach((node) => {
+        node.removeAttribute("name");
+      });
+    });
+  document
+    .querySelector("input[name=e][value=g]")
+    .addEventListener("change", () => {
+      gradedSettingsEl.removeAttribute("hidden");
+      gradedSettingsFields.forEach((node) => {
+        node.name = node.dataset.name;
+      });
+    });
 
   const params = get();
   if (params.edit) {
@@ -40,7 +65,7 @@ import { get } from "./search-params.js";
     );
     document.querySelector('input[name="t"]').value = params.total;
     document.querySelector('input[name="s"]').value = params.satisfactory;
-    if (params.allowIncorrect)
-      document.querySelector('input[name="i"]').checked = true;
+    if (params.graded)
+      document.querySelector('input[name="e"][value="g"]').checked = true;
   }
 })();

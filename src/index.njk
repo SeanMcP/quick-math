@@ -9,6 +9,17 @@ styles: []
     <p>{{ app.description }}</p>
     <form action="practice/" id="create-form">
         <h2>Setup</h2>
+        <div>
+            <h3>Type</h3>
+            <label>
+                <input type="radio" name="e" value="p" checked="checked">
+                <b>Practice exercise</b>
+            </label>
+            <label>
+                <input type="radio" name="e" value="g">
+                <b>Graded exercise</b>
+            </label>
+        </div>
         <h3>Operators</h3>
         {% set ops = ['Addition', 'Subtraction', 'Multiplication', 'Division']%}
         {% for op in ops -%}
@@ -33,23 +44,21 @@ styles: []
             <b>Satisfactory number</b>
             <input type="number" name="s"/>
         </label>
-        <label class="block">
-            <input type="checkbox" name="i"/>
-            <b>Allow incorrect answers</b>
-        </label>
-        <h3>Keys</h3>
-        <p id="key-description">Keys are secret words that students see when they have completed the exercises. You can use the keys to a) verify that your students have completed the activity, and b) determine whether they have mastered the skill or not.<br/><br/>It's a good idea to use short words of the same length that aren't related to the activity, like "cat" and "dog".
-        </p>
-        <label class="field">
-            <b>"Satisfactory" key</b>
-            <input aria-describedby="key-description" data-name="p-key-dummy"/>
-        </label>
-        <input hidden="hidden" name="p"/>
-        <label class="field">
-            <b>"Needs improvement" key</b>
-            <input aria-describedby="key-description" data-name="f-key-dummy"/>
-        </label>
-        <input hidden="hidden" name="f"/>
+        <div id="graded-settings" hidden="hidden">
+            <h3>Keys</h3>
+            <p id="key-description">Keys are secret words that students see when they have completed the exercises. You can use the keys to a) verify that your students have completed the activity, and b) determine whether they have mastered the skill or not.<br/><br/>It's a good idea to use short words of the same length that aren't related to the activity, like "cat" and "dog".
+            </p>
+            <label class="field">
+                <b>"Satisfactory" key</b>
+                <input aria-describedby="key-description" data-fake-name="p-key-dummy"/>
+            </label>
+            <input hidden="hidden" name="p"/>
+            <label class="field">
+                <b>"Needs improvement" key</b>
+                <input aria-describedby="key-description" data-fake-name="f-key-dummy"/>
+            </label>
+            <input hidden="hidden" name="f"/>
+        </div>
         <button>Create</button>
     </form>
 </div>
