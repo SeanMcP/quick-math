@@ -6,11 +6,12 @@ export const KEY = {
 };
 
 export function get(item) {
-  return JSON.parse(sessionStorage.getItem(item));
+  const fromStorage = sessionStorage.getItem(item);
+  return fromStorage ? JSON.parse(fromStorage) : undefined;
 }
 
 export function set(item, value) {
-  sessionStorage.setItem(item, JSON.stringify(value));
+  if (item && value) sessionStorage.setItem(item, JSON.stringify(value));
 }
 
 export function getCorrectCount() {
