@@ -60,7 +60,7 @@ import {
         window.dispatchEvent(incrementProgressEvent);
         problemForm.dispatchEvent(generateProblemEvent);
       } else {
-        if (params.allowIncorrect) {
+        if (params.graded) {
           alert(`So close! The correct answer was ${inputEl.dataset.answer}`);
           window.dispatchEvent(incrementProgressEvent);
           problemForm.dispatchEvent(generateProblemEvent);
