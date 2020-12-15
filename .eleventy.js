@@ -5,6 +5,8 @@ module.exports = (config) => {
     "md",
     require("markdown-it")({ html: true }).disable("code")
   );
+  
+  config.addPlugin(require("eleventy-plugin-emoji"));
 
   return {
     dir: {
