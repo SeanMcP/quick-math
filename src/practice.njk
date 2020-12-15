@@ -10,9 +10,10 @@ styles: ['scratchpad.css']
 <div class="content">
     <h1>{{ title }}</h1>
     <p>Let's strengthen those math muscles!
-        <span aria-hidden="true" role="img">💪</span></p>
+        {% emoji '💪' %}
+    </p>
     <div id="form-container"></div>
-    <details class="scratchpad-details" open>
+    <details class="scratchpad-details" open="open">
         <summary>Scratchpad</summary>
         <div class="scratchpad-container">
             <div class="scratchpad-toolbar">
